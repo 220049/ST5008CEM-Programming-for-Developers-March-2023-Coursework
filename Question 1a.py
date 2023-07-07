@@ -17,3 +17,36 @@ Cost = 3. Person 3 chooses blue clothing. Cost = 2.
 As a result, the total cost = 2 + 5 + 3 = 9.
 Note: algorithm must take Time Complexity: O(N) Auxiliary Space: O(1)
 '''
+
+
+def findMinimumCost(prices):
+    # Initialize the minimum costs for each person
+    minCost1 = prices[0][0]  # Minimum cost for person 1 wearing the first color
+    minCost2 = prices[0][1]  # Minimum cost for person 2 wearing the second color
+    minCost3 = prices[0][2]  # Minimum cost for person 3 wearing the third color
+
+    # Iterate over the prices array for each person starting from the second person
+    for i in range(1, len(prices)):
+        # Calculate the new minimum costs for the current person
+
+        # Calculate the new minimum cost for the current person wearing the first color
+        newMinCost1 = min(minCost2, minCost3) + prices[i][0]
+
+        # Calculate the new minimum cost for the current person wearing the second color
+        newMinCost2 = min(minCost1, minCost3) + prices[i][1]
+
+        # Calculate the new minimum cost for the current person wearing the third color
+        newMinCost3 = min(minCost1, minCost2) + prices[i][2]
+
+        # Update the minimum costs for the current person
+        minCost1 = newMinCost1
+        minCost2 = newMinCost2
+        minCost3 = newMinCost3
+
+    # Return the minimum cost among the three persons' costs
+    return min(minCost1, minCost2, minCost3)
+
+# Test the function with sample prices
+prices = [[14, 4, 11], [11, 14, 3], [14, 2, 10]]
+minCost = findMinimumCost(prices)
+print("Minimum cost:", minCost)
