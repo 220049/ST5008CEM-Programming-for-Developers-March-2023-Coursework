@@ -10,6 +10,14 @@ Output: false
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
+        """
+        Initialize a TreeNode with the given value and optional left and right children.
+
+        Args:
+            val (int): The value of the node.
+            left (TreeNode, optional): The left child of the node. Defaults to None.
+            right (TreeNode, optional): The right child of the node. Defaults to None.
+        """
         self.val = val
         self.left = left
         self.right = right
@@ -19,6 +27,17 @@ def dfs(node, parent, x, y, depth, results):
     """
     Performs a depth-first search traversal of the binary tree.
     Stores the depth and parent of the target nodes in the results list.
+
+    Args:
+        node (TreeNode): The current node being visited.
+        parent (TreeNode): The parent of the current node.
+        x (int): The value of the first target node.
+        y (int): The value of the second target node.
+        depth (int): The current depth in the tree.
+        results (list): A list to store the results.
+
+    Returns:
+        None
     """
     if node is None:
         return
@@ -34,6 +53,14 @@ def areBrothers(root, x, y):
     """
     Checks if the nodes corresponding to values x and y in the binary tree are brothers.
     Returns True if they are brothers, False otherwise.
+
+    Args:
+        root (TreeNode): The root of the binary tree.
+        x (int): The value of the first target node.
+        y (int): The value of the second target node.
+
+    Returns:
+        bool: True if the nodes are brothers, False otherwise.
     """
     results = []
     dfs(root, None, x, y, 0, results)

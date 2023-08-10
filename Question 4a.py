@@ -13,9 +13,19 @@ Input: N = 3, r= [[1,3],[2,3]] Output: 2 Explanation: In the first step, you can
 from collections import defaultdict, deque
 
 def minimumSteps(N, r):
+    """
+    Calculate the minimum number of steps needed to complete all tasks.
+
+    Args:
+        N (int): The number of tasks.
+        r (List[List[int]]): A list of prerequisite relationships between tasks.
+
+    Returns:
+        int: The minimum number of steps or -1 if not possible.
+    """
     # Create a directed graph
     graph = defaultdict(list)
-    inDegree = [0] * (N+1)  # inDegree array to track the prerequisites count for each task
+    inDegree = [0] * (N + 1)  # inDegree array to track the prerequisites count for each task
 
     # Populate the graph and in-degree array
     for prerequisite in r:
@@ -25,7 +35,7 @@ def minimumSteps(N, r):
 
     # Enqueue tasks with in-degree 0
     q = deque()
-    for task in range(1, N+1):
+    for task in range(1, N + 1):
         if inDegree[task] == 0:
             q.append(task)
 
@@ -43,10 +53,9 @@ def minimumSteps(N, r):
                 q.append(task)
 
     if steps == N:
-        return steps
+        return steps  # All tasks were completed, return the number of steps
     else:
-        return -1
-
+        return -1  # Not all tasks could be completed, return -1
 
 # Example usage
 N = 3

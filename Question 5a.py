@@ -3,9 +3,18 @@ Task 5
 a) Implement hill climbing algorithm
 '''
 
-import random
-
 def hill_climbing(initial_state, objective_function, neighbors_function):
+    """
+    Implement the Hill Climbing algorithm to find the local maximum of an objective function.
+
+    Args:
+        initial_state: The starting state for the algorithm.
+        objective_function: The objective function to be maximized.
+        neighbors_function: A function that generates neighboring states.
+
+    Returns:
+        The state that corresponds to the local maximum of the objective function.
+    """
     current_state = initial_state
     current_value = objective_function(current_state)
 
@@ -30,9 +39,27 @@ def hill_climbing(initial_state, objective_function, neighbors_function):
 
 # Example usage
 def objective_function(x):
+    """
+    A sample quadratic objective function to be maximized.
+
+    Args:
+        x: The input variable.
+
+    Returns:
+        The value of the quadratic function.
+    """
     return -x**2  # Minimize the negative of a quadratic function
 
 def neighbors_function(x):
+    """
+    Generate a single neighboring state by perturbing the input variable.
+
+    Args:
+        x: The input variable.
+
+    Returns:
+        A list containing the neighboring state.
+    """
     return [x + random.uniform(-0.1, 0.1)]  # Generate a single neighbor by perturbing the current state
 
 initial_state = 1.0
