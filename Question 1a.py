@@ -18,32 +18,42 @@ As a result, the total cost = 2 + 5 + 3 = 9.
 Note: algorithm must take Time Complexity: O(N) Auxiliary Space: O(1)
 '''
 
-
 def findMinimumCost(prices):
-    # Initialize the minimum costs for each person
-    minCost1 = prices[0][0]  # Minimum cost for person 1 wearing the first color
-    minCost2 = prices[0][1]  # Minimum cost for person 2 wearing the second color
-    minCost3 = prices[0][2]  # Minimum cost for person 3 wearing the third color
+    """
+    Calculate the minimum cost required to purchase clothing sets for three friends.
 
-    # Iterate over the prices array for each person starting from the second person
+    Args:
+        prices (List[List[int]]): A 2D array where prices[i][0], prices[i][1], and prices[i][2] represent
+                                  the price of each clothing set for a different colored outfit for person i.
+
+    Returns:
+        int: The minimum cost required to purchase clothing sets such that each person wears a different color
+             and the third person wears a various color cloth.
+    """
+    # Initialize the minimum costs for the first person wearing each color
+    minCost1 = prices[0][0]  # Minimum cost for person 1 wearing the first color
+    minCost2 = prices[0][1]  # Minimum cost for person 1 wearing the second color
+    minCost3 = prices[0][2]  # Minimum cost for person 1 wearing the third color
+
+    # Iterate over the prices array for each person starting from the second person (index 1)
     for i in range(1, len(prices)):
         # Calculate the new minimum costs for the current person
-
-        # Calculate the new minimum cost for the current person wearing the first color
+        
+        # Calculate the new minimum cost for the current person wearing the first color.
         newMinCost1 = min(minCost2, minCost3) + prices[i][0]
-
-        # Calculate the new minimum cost for the current person wearing the second color
+        
+        # Calculate the new minimum cost for the current person wearing the second color.
         newMinCost2 = min(minCost1, minCost3) + prices[i][1]
-
-        # Calculate the new minimum cost for the current person wearing the third color
+        
+        # Calculate the new minimum cost for the current person wearing the third color.
         newMinCost3 = min(minCost1, minCost2) + prices[i][2]
-
-        # Update the minimum costs for the current person
+        
+        # Update the minimum costs for the current person.
         minCost1 = newMinCost1
         minCost2 = newMinCost2
         minCost3 = newMinCost3
 
-    # Return the minimum cost among the three persons' costs
+    # Return the minimum cost among the three persons' costs.
     return min(minCost1, minCost2, minCost3)
 
 # Test the function with sample prices

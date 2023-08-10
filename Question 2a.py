@@ -18,15 +18,35 @@ than 3.
 '''
 
 def longestSubsequence(nums, k):
-    n = len(nums)
+    """
+    Find the length of the longest subsequence with adjacent elements differing by at most k.
+
+    Args:
+        nums (List[int]): An input list of integers.
+        k (int): The maximum difference allowed between adjacent elements in the subsequence.
+
+    Returns:
+        int: The length of the longest subsequence with adjacent elements differing by at most k.
+    """
+    n = len(nums)  # Get the length of the input array (number of elements)
     dp = [1] * n  # Initialize a dynamic programming array with all elements set to 1
     maxLen = 0  # Initialize the maximum length variable as 0
 
-    for i in range(n):  # Iterate over the elements of nums
-        for j in range(i):  # Iterate over the elements before the current element
-            if nums[i] - nums[j] <= k:  # Check if the difference between elements is at most k
-                dp[i] = max(dp[i], dp[j] + 1)  # Update the length of the subsequence if condition is met
-        maxLen = max(maxLen, dp[i])  # Update the maximum length variable
+    # Iterate over the elements of nums
+    for i in range(n):
+        # Iterate over the elements before the current element
+        for j in range(i):
+            # Check if the difference between elements is at most k
+            if nums[i] - nums[j] <= k:
+                # Update the length of the subsequence if the condition is met
+                # We increase the length of subsequence ending at index 'i' if the difference between nums[i] and nums[j]
+                # is at most k, which satisfies the second requirement.
+                # dp[j] represents the length of the subsequence ending at index 'j', and we add 1 to extend it to index 'i'.
+                dp[i] = max(dp[i], dp[j] + 1)
+
+        # Update the maximum length variable
+        # We keep track of the maximum length of subsequences we have encountered so far.
+        maxLen = max(maxLen, dp[i])
 
     return maxLen  # Return the maximum length of the subsequence
 
